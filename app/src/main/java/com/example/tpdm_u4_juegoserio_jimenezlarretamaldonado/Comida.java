@@ -14,12 +14,13 @@ public class Comida {
     Random rdn;
 
 
-    public Comida (String tipo,int maxW, int imagen, Lienzo l){
+    public Comida (String tipo,int maxW, int imagen, Lienzo l,int calorias){
         rdn = new Random();
         this.tipo = tipo;
         this.imagen = BitmapFactory.decodeResource(l.getResources(),imagen);
         x = rdn.nextInt(maxW-this.imagen.getWidth()+1)+20;
         y = 0;
+        this.calorias = calorias;
     }
 
     public void pintar(Canvas c, Paint p){
