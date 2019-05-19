@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Lienzo extends View {
-    Thread hilo,movimientoComida,movimientonino, tiempo,cuadros;
+    Thread hilo,movimientoComida,movimientonino, tiempo,cuadros,animacion;
     List<Comida> comidas;
     boolean bandera = true;
     int decision,maxW,maxH,indice, calorias,puntos=0,contador = 3;
@@ -119,6 +119,49 @@ public class Lienzo extends View {
             }
         };
         cuadros.start();
+        //comer
+        animacion = new Thread(){
+            public void run(){
+
+                jugador.animacion.set(0,BitmapFactory.decodeResource(getResources(),R.drawable.ninoidle1));
+                jugador.animacion.set(1,BitmapFactory.decodeResource(getResources(),R.drawable.ninoidle2));
+                jugador.animacion.set(2,BitmapFactory.decodeResource(getResources(),R.drawable.ninoeat1));
+                jugador.animacion.set(3,BitmapFactory.decodeResource(getResources(),R.drawable.ninoeat2));
+                jugador.animacion.set(4,BitmapFactory.decodeResource(getResources(),R.drawable.ninoeat3));
+                while(true){
+                    try{
+                        if(jugador.peso==1)
+                        {if(jugador.comiendo==true){
+                            jugador.nino = jugador.animacion.get(2);
+                            sleep(30);
+                            jugador.nino = jugador.animacion.get(3);
+                            sleep(50);
+                            jugador.nino = jugador.animacion.get(4);
+                            sleep(30);
+                            jugador.comiendo = false;
+
+                        }else {
+                            jugador.nino = jugador.animacion.get(0);
+                            sleep(50);
+                            jugador.nino = jugador.animacion.get(1);
+                            sleep(50);
+                        }
+
+                        }else if(jugador.peso==2){
+
+                        }else if(jugador.peso==3){
+
+                        }else if(jugador.peso==4){
+
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    invalidate();
+                }
+            }
+        };
+        animacion.start();
     }
 
 
@@ -211,6 +254,7 @@ public class Lienzo extends View {
                     }else{
                         contador++;
                     }
+                    jugador.comiendo = true;
                     comidas.remove(i);
                 }
                 else{
