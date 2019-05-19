@@ -5,12 +5,21 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Nino {
-    int x,y,direccion = 1,movX = 1;
+    int x,y,direccion = 1,movX = 1,peso=1;
     Bitmap nino,puntero;
+    boolean comiendo=false;
+    List<Bitmap> animacion = new ArrayList<>();
 
     public Nino(Lienzo l,int posx, int posy, int imagen){
+
         nino = BitmapFactory.decodeResource(l.getResources(),imagen);
+        for (int i = 0; i < 5; i++) {
+            animacion.add(null);
+        }
         x = (posx/2)-(nino.getWidth()/2);
         y = posy-nino.getHeight();
     }
