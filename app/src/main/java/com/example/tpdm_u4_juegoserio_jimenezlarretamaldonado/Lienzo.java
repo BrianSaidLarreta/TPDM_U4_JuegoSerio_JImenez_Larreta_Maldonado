@@ -14,7 +14,7 @@ public class Lienzo extends View {
     Thread hilo,movimientoComida,movimientonino, tiempo,cuadros;
     List<Comida> comidas;
     boolean bandera = true;
-    int decision,maxW,maxH,indice, calorias,puntos=0,contador = 6;
+    int decision,maxW,maxH,indice, calorias,puntos=0,contador = 3;
     int [] imagenesSaludables = {R.drawable.apple1,R.drawable.beans,R.drawable.carrot,R.drawable.broccoli,R.drawable.fish,R.drawable.grapes,R.drawable.orange,R.drawable.pear,R.drawable.pineapple,R.drawable.salad1,R.drawable.strawberry,
             R.drawable.tomato,R.drawable.watermelon};
     int [] imagenesDaninas = {R.drawable.bacon,R.drawable.cake,R.drawable.cookies,R.drawable.doughnut1,R.drawable.fries,R.drawable.icecream12,R.drawable.pancakes1,R.drawable.pie,R.drawable.pizza,R.drawable.pudding,R.drawable.sabritas,R.drawable.can};
@@ -99,14 +99,17 @@ public class Lienzo extends View {
             public void run(){
                 while(true){
                     try {
+                        if(contador==0)
+                            contador=1;
                         if (contador >= 1 && contador <= 3) {
-                            sleep(5000);
-                        } else if (contador == 4)
                             sleep(7000);
-                        else if (contador == 5)
+                        } else if (contador == 4)
                             sleep(9000);
+                        else if (contador == 5)
+                            sleep(11000);
                         else if (contador == 6)
-                            sleep(10000);
+                            sleep(13000);
+                        contador--;
                     }
                      catch (InterruptedException e) {
                         e.printStackTrace();
@@ -196,7 +199,18 @@ public class Lienzo extends View {
                 comidas.remove(i);
             }else{
                 if(jugador.estaEnColision(comidas.get(i))) {
-                    puntos += comidas.get(i).calorias;
+//                    puntos += comidas.get(i).calorias;
+                    if(comidas.get(i).tipo=="saludable" || comidas.get(i).tipo=="poder"){
+                        puntos+=10;
+                        if(contador>=1 && contador<3){
+                            contador++;
+                        }
+                        else if(contador>3 && comidas.get(i).tipo=="poder"){
+                            contador--;
+                        }
+                    }else{
+                        contador++;
+                    }
                     comidas.remove(i);
                 }
                 else{
