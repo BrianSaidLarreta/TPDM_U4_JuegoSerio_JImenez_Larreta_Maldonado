@@ -25,7 +25,7 @@ public class Lienzo extends View {
     public Lienzo(Context este){
         super(este);
         maxW= getResources().getSystem().getDisplayMetrics().widthPixels;
-        maxH = getResources().getSystem().getDisplayMetrics().heightPixels-200;
+        maxH = getResources().getSystem().getDisplayMetrics().heightPixels;
         comidas = new ArrayList<>();
         jugador = new Nino(Lienzo.this,maxW,maxH,R.drawable.nino);
         calavera = BitmapFactory.decodeResource(getResources(),R.drawable.calaberita);
@@ -122,16 +122,10 @@ public class Lienzo extends View {
         //comer
         animacion = new Thread(){
             public void run(){
-
-                jugador.animacion.set(0,BitmapFactory.decodeResource(getResources(),R.drawable.ninoidle1));
-                jugador.animacion.set(1,BitmapFactory.decodeResource(getResources(),R.drawable.ninoidle2));
-                jugador.animacion.set(2,BitmapFactory.decodeResource(getResources(),R.drawable.ninoeat1));
-                jugador.animacion.set(3,BitmapFactory.decodeResource(getResources(),R.drawable.ninoeat2));
-                jugador.animacion.set(4,BitmapFactory.decodeResource(getResources(),R.drawable.ninoeat3));
+                jugador.cambiarPeso(Lienzo.this);
                 while(true){
                     try{
-                        if(jugador.peso==1)
-                        {if(jugador.comiendo==true){
+                        if(jugador.comiendo==true){
                             jugador.nino = jugador.animacion.get(2);
                             sleep(30);
                             jugador.nino = jugador.animacion.get(3);
@@ -145,14 +139,6 @@ public class Lienzo extends View {
                             sleep(50);
                             jugador.nino = jugador.animacion.get(1);
                             sleep(50);
-                        }
-
-                        }else if(jugador.peso==2){
-
-                        }else if(jugador.peso==3){
-
-                        }else if(jugador.peso==4){
-
                         }
                     } catch (InterruptedException e) {
                         e.printStackTrace();

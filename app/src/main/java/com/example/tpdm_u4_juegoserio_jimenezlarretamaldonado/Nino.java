@@ -40,6 +40,38 @@ public class Nino {
         }
         return false;
     }
+    public void cambiarPeso(Lienzo lawea){
+        if(peso ==1){
+            animacion.set(0,BitmapFactory.decodeResource(lawea.getResources(),R.drawable.ninoidle1));
+            animacion.set(1,BitmapFactory.decodeResource(lawea.getResources(),R.drawable.ninoidle2));
+            animacion.set(2,BitmapFactory.decodeResource(lawea.getResources(),R.drawable.ninoeat1));
+            animacion.set(3,BitmapFactory.decodeResource(lawea.getResources(),R.drawable.ninoeat2));
+            animacion.set(4,BitmapFactory.decodeResource(lawea.getResources(),R.drawable.ninoeat3));
+        }else if(peso ==2){
+            animacion.set(0,BitmapFactory.decodeResource(lawea.getResources(),R.drawable.ninoidle1f1));
+            animacion.set(1,BitmapFactory.decodeResource(lawea.getResources(),R.drawable.ninoidle2f1));
+            animacion.set(2,BitmapFactory.decodeResource(lawea.getResources(),R.drawable.ninoeat1f1));
+            animacion.set(3,BitmapFactory.decodeResource(lawea.getResources(),R.drawable.ninoeat2f1));
+            animacion.set(4,BitmapFactory.decodeResource(lawea.getResources(),R.drawable.ninoeat3f1));
+
+        }else if(peso == 3){
+            animacion.set(0,BitmapFactory.decodeResource(lawea.getResources(),R.drawable.ninoidle1f2));
+            animacion.set(1,BitmapFactory.decodeResource(lawea.getResources(),R.drawable.ninoidle2f2));
+            animacion.set(2,BitmapFactory.decodeResource(lawea.getResources(),R.drawable.ninoeat1f2));
+            animacion.set(3,BitmapFactory.decodeResource(lawea.getResources(),R.drawable.ninoeat2f2));
+            animacion.set(4,BitmapFactory.decodeResource(lawea.getResources(),R.drawable.ninoeat3f2));
+
+        }else if(peso == 4){
+            animacion.set(0,BitmapFactory.decodeResource(lawea.getResources(),R.drawable.ninoidle1f3));
+            animacion.set(1,BitmapFactory.decodeResource(lawea.getResources(),R.drawable.ninoidle2f3));
+            animacion.set(2,BitmapFactory.decodeResource(lawea.getResources(),R.drawable.ninoeat1f3));
+            animacion.set(3,BitmapFactory.decodeResource(lawea.getResources(),R.drawable.ninoeat2f3));
+            animacion.set(4,BitmapFactory.decodeResource(lawea.getResources(),R.drawable.ninoeat3f3));
+
+        }else{
+            //pues te mueres si llega 0 o 5 xd
+        }
+    }
 
     public boolean estaEnColision(Comida objetoB){
         if(!objetoB.equals(this) ) {
