@@ -18,8 +18,8 @@ public class Comida {
         rdn = new Random();
         this.tipo = tipo;
         this.imagen = BitmapFactory.decodeResource(l.getResources(),imagen);
-        x = rdn.nextInt(maxW-this.imagen.getWidth()+1)+20;
-        y = 0;
+        x = rdn.nextInt(maxW-this.imagen.getWidth()+1)+10;
+        y = 50;
         this.calorias = calorias;
     }
 

@@ -21,7 +21,7 @@ public class Nino {
             animacion.add(null);
         }
         x = (posx/2)-(nino.getWidth()/2);
-        y = posy-nino.getHeight();
+        y = posy-nino.getHeight()+120;
     }
 
     public void pintar(Canvas c, Paint p){
@@ -33,9 +33,9 @@ public class Nino {
     }
 
     public boolean estaEnArea(int dedox,int dedoy) {
-        int x2=x+nino.getWidth();
-        int y2=y+nino.getHeight()/2;
-        if(dedox >=x && dedox<=x2 && dedoy >=y && dedoy<=y2){
+        int x2=(x+nino.getWidth())-(nino.getWidth()/4);
+        int y2=y+nino.getHeight()/4;
+        if(dedox >=(x+(nino.getWidth()/4)) && dedox<=x2 && dedoy >=y && dedoy<=y2){
             return true;
         }
         return false;

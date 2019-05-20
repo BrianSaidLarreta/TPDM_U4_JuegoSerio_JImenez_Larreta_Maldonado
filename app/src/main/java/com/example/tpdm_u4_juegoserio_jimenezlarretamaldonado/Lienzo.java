@@ -262,7 +262,7 @@ public class Lienzo extends View {
             case MotionEvent.ACTION_DOWN:
                 {
                     bandera = true;
-                    if (posx <= maxH / 2 && posx >= 0) {
+                    if (posx <= maxW / 2 && posx >= 0) {
                         jugador.direccion = -1;
                     } else {
                         jugador.direccion = 1;
