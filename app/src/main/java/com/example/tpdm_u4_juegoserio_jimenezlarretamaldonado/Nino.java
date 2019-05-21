@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Nino {
-    int x,y,direccion = 1,movX = 1,peso=1;
+    int x,y,direccion = 1,peso=1;
+    float movX = 9;
     Bitmap nino,puntero;
     boolean comiendo=false;
     List<Bitmap> animacion = new ArrayList<>();
@@ -23,7 +24,9 @@ public class Nino {
         x = (posx/2)-(nino.getWidth()/2);
         y = posy-nino.getHeight()+120;
     }
-
+    public void centrarX(int posx){
+        x = (posx/2)-(nino.getWidth()/2);
+    }
     public void pintar(Canvas c, Paint p){
         c.drawBitmap(nino,x,y,p);
     }

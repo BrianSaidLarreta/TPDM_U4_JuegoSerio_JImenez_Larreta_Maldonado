@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class Comida {
     String tipo;
-    int x,y,calorias, movY = 3;
+    int x,y,calorias, movY = 10;
     Bitmap imagen;
     Random rdn;
 
