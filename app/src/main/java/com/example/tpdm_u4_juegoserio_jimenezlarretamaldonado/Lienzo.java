@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.*;
 import android.media.MediaPlayer;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -24,24 +25,52 @@ public class Lienzo extends View {
     Nino jugador;
     Bitmap[] barritas;
     Random rdn;
+    DisplayMetrics metrics;
+    int width,height;
 //variables
 
 // inicia el constructor
     public Lienzo(Context este){
         super(este);
+        DisplayMetrics metrics = this.getResources().getDisplayMetrics();
+        width = metrics.widthPixels;
+        height = (BitmapFactory.decodeResource(getResources(),R.drawable.bar1).getHeight());
+
         maxW= getResources().getSystem().getDisplayMetrics().widthPixels;
         maxH = getResources().getSystem().getDisplayMetrics().heightPixels;
         comidas = new ArrayList<>();
         jugador = new Nino(Lienzo.this,maxW,maxH,R.drawable.nino);
         barritas = new Bitmap[8];
+
+
+
+
         barritas[0] = BitmapFactory.decodeResource(getResources(),R.drawable.bar1);
+        barritas[0] = Bitmap.createScaledBitmap(barritas[0], width, height, false);
+
         barritas[1] = BitmapFactory.decodeResource(getResources(),R.drawable.bar2);
+        barritas[1] = Bitmap.createScaledBitmap(barritas[1], width, height, false);
+
         barritas[2] = BitmapFactory.decodeResource(getResources(),R.drawable.bar3);
+        barritas[2] = Bitmap.createScaledBitmap(barritas[2], width, height, false);
+
         barritas[3] = BitmapFactory.decodeResource(getResources(),R.drawable.bar4);
+        barritas[3] = Bitmap.createScaledBitmap(barritas[3], width, height, false);
+
         barritas[4] = BitmapFactory.decodeResource(getResources(),R.drawable.bar5);
+        barritas[4] = Bitmap.createScaledBitmap(barritas[4], width, height, false);
+
         barritas[5] = BitmapFactory.decodeResource(getResources(),R.drawable.bar6);
+        barritas[5] = Bitmap.createScaledBitmap(barritas[5], width, height, false);
+
         barritas[6] = BitmapFactory.decodeResource(getResources(),R.drawable.bar7);
+        barritas[6] = Bitmap.createScaledBitmap(barritas[6], width, height, false);
+
         barritas[7] = BitmapFactory.decodeResource(getResources(),R.drawable.bar8);
+        barritas[7] = Bitmap.createScaledBitmap(barritas[7], width, height, false);
+
+
+
 
         sonidosComiendo = new MediaPlayer[3];
         sonidosComiendo[1] =MediaPlayer.create(este,R.raw.sonidomanzana);
@@ -203,6 +232,8 @@ public class Lienzo extends View {
 
 
     protected void onDraw(Canvas c){
+        Rect frameToDraw = new Rect(0, 0, barritas[0].getWidth(), barritas[0].getHeight());
+        RectF whereToDraw = new RectF(0, 0, width, height);
         Paint p = new Paint();
         p.setTextSize(60f);
         int equis=17;
@@ -219,32 +250,34 @@ public class Lienzo extends View {
         }
 
         switch(contador){
+
+
             case 0:
                 //morido
-                c.drawBitmap(barritas[0],equis,0,p);
+                c.drawBitmap(barritas[0],frameToDraw,whereToDraw,p);
                 fin=true;
                 break;
             case 1:
-                c.drawBitmap(barritas[1],equis,0,p);
+                c.drawBitmap(barritas[1],frameToDraw,whereToDraw,p);
                 break;
             case 2:
-                c.drawBitmap(barritas[2],equis,0,p);
+                c.drawBitmap(barritas[2],frameToDraw,whereToDraw,p);
                 break;
             case 3:
-                c.drawBitmap(barritas[3],equis,0,p);
+                c.drawBitmap(barritas[3],frameToDraw,whereToDraw,p);
                 break;
             case 4:
-                c.drawBitmap(barritas[4],equis,0,p);
+                c.drawBitmap(barritas[4],frameToDraw,whereToDraw,p);
                 break;
             case 5:
-                c.drawBitmap(barritas[5],equis,0,p);
+                c.drawBitmap(barritas[5],frameToDraw,whereToDraw,p);
                 break;
             case 6:
-                c.drawBitmap(barritas[6],equis,0,p);
+                c.drawBitmap(barritas[6],frameToDraw,whereToDraw,p);
                 break;
             default:
                 //moridox2
-                c.drawBitmap(barritas[7],equis,0,p);
+                c.drawBitmap(barritas[7],frameToDraw,whereToDraw,p);
                 fin=true;
                 break;
         }
